@@ -1,0 +1,11 @@
+{
+  "name": "coding-concepts-git",
+  "version": "1.0.0",
+  "description": "Coding Concepts — Git & GitHub Edition. Nine modules on version control and collaboration workflows, content-driven from data/*.json.",
+  "private": true,
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "deploy": "wrangler pages deploy . --project-name=coding-concepts-git"
+  },
+  "devDependencies": { "wrangler": "^3" }
+}

@@ -1,0 +1,69 @@
+{
+  "id": 1,
+  "module": "01",
+  "title": "Git Fundamentals",
+  "titleEm": "— The Foundation",
+  "tagline": "Three areas, one command pattern -- every other Git command is a variation on moving files between them.",
+  "concept": [
+    {
+      "label": "What",
+      "text": "A version-control system tracking snapshots of a project over time, stored in a hidden <code>.git</code> folder."
+    },
+    {
+      "label": "Why",
+      "text": "Without it, \"final_v2_REALLY_final.docx\" is your version history -- Git replaces that with real, queryable history."
+    },
+    {
+      "label": "How",
+      "text": "Three areas: working directory (your files) -> staging area (<code>git add</code>) -> repository (<code>git commit</code>)."
+    },
+    {
+      "label": "When",
+      "text": "The moment a project has more than one file you'd be sad to lose -- which is almost immediately."
+    },
+    {
+      "label": "Where",
+      "text": "Every chapter after this one is built on these three areas and two commands."
+    }
+  ],
+  "mnemonic": {
+    "label": "W.S.R.",
+    "text": "Working directory -> Staging -> Repository -- the one-way path every change takes"
+  },
+  "sandboxNote": {
+    "strong": "A note on this format:",
+    "text": "these are real commands for a terminal with git installed -- type them into an actual shell (or GitHub Codespaces / Replit) to see real output, not this page."
+  },
+  "code": "git init                        # create a new repo (a .git folder) here\ngit status                      # ALWAYS run this first -- shows what's changed\n\necho \"hello\" > notes.txt        # a change in the WORKING DIRECTORY\ngit add notes.txt               # move it to the STAGING AREA\ngit status                      # notice it's now \"staged\", not just \"modified\"\n\ngit commit -m \"Add notes.txt\"   # move staged changes into the REPOSITORY\ngit log                         # see the permanent snapshot you just created",
+  "cycle": [
+    {
+      "title": "Read the concept table once",
+      "text": "Don't memorise commands yet. Just notice the pattern: What it is -> Why it matters -> How the three areas connect -> When -> Where."
+    },
+    {
+      "title": "Type the code yourself — no copy-paste",
+      "text": "Open a terminal, make an empty folder, and type every line above by hand. Run <code>git status</code> after EVERY command, not just where shown -- watching it change is how the three areas actually click.",
+      "hint": "git status is the single most-run Git command by experienced developers. If you're ever unsure what state you're in, that's the answer, every time."
+    },
+    {
+      "title": "Apply it to your own data",
+      "text": "Create a real small project folder (even just 2-3 files), <code>git init</code> it, and make three separate commits, each with a real, specific commit message describing what changed."
+    },
+    {
+      "title": "Reflect & note",
+      "text": "What surprised you about staging? Did you expect commit to just save everything automatically?",
+      "notes": true,
+      "placeholder": "e.g. I didn't realise a modified-but-unstaged file doesn't get committed at all -- I ran git commit and my change wasn't in the snapshot, which confused me until I checked git status..."
+    },
+    {
+      "title": "Tick off before moving on",
+      "checklist": [
+        "I can explain the three areas (working/staging/repo) in one sentence each.",
+        "I ran git init, git add, and git commit myself on a real folder.",
+        "I ran git status enough times to see it change between each command.",
+        "I made 3 real commits with specific, descriptive messages.",
+        "I wrote a reflection note above."
+      ]
+    }
+  ]
+}

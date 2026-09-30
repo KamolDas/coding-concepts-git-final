@@ -1,0 +1,69 @@
+{
+  "id": 7,
+  "module": "07",
+  "title": "Pull Requests",
+  "titleEm": "— Collaboration Workflows",
+  "tagline": "A pull request isn't a Git feature at all -- it's GitHub's UI wrapped around a branch and a diff you already understand.",
+  "concept": [
+    {
+      "label": "What",
+      "text": "A pull request (PR) proposes merging one branch into another, with GitHub's UI showing the diff, discussion, and review status."
+    },
+    {
+      "label": "Why",
+      "text": "Direct pushes to main skip review entirely -- PRs are the checkpoint where a second person looks before code lands."
+    },
+    {
+      "label": "How",
+      "text": "Push a branch to GitHub, open a PR from it, request review, address comments with new commits, then merge."
+    },
+    {
+      "label": "When",
+      "text": "Any change to a shared/production branch on a team project -- even a solo project benefits from the habit."
+    },
+    {
+      "label": "Where",
+      "text": "The standard workflow every other chapter's techniques (branching, rebasing, history) feed into."
+    }
+  ],
+  "mnemonic": {
+    "label": "P.R.M.",
+    "text": "Push (the branch) -> Review (get eyes on it) -> Merge (land it) -- the PR lifecycle"
+  },
+  "sandboxNote": {
+    "strong": "A note on this format:",
+    "text": "this needs a real GitHub repo -- fork any public repo (or use your own from Module 3) to open a real PR against."
+  },
+  "code": "git switch -c add-contributing-guide\necho \"# Contributing\" > CONTRIBUTING.md\ngit add CONTRIBUTING.md\ngit commit -m \"Add CONTRIBUTING.md\"\ngit push origin add-contributing-guide   # PUSH: branch now exists on GitHub too\n\n# on github.com: click \"Compare & pull request\" -- write a clear title +\n# description of WHAT changed and WHY, then \"Create pull request\"\n\n# a reviewer leaves a comment asking for a change -- respond with more commits:\necho \"## How to contribute\" >> CONTRIBUTING.md\ngit add CONTRIBUTING.md\ngit commit -m \"Address review feedback\"\ngit push origin add-contributing-guide   # the SAME PR updates automatically\n\n# once approved, on github.com: \"Merge pull request\" -- MERGE, done",
+  "cycle": [
+    {
+      "title": "Read the concept table once",
+      "text": "The reframe worth internalising: a PR is just a labeled diff between two branches, sitting on a server, that people can comment on. Nothing about it changes what Git itself is doing underneath."
+    },
+    {
+      "title": "Type the code yourself — no copy-paste",
+      "text": "Open a real PR (even against your own repo, even alone) -- push a branch, click through GitHub's PR creation flow yourself, and actually read the diff view it generates.",
+      "hint": "If you have no collaborator to review it, open the PR anyway and self-review by reading GitHub's diff view as if you were someone else seeing this code for the first time."
+    },
+    {
+      "title": "Apply it to your own data",
+      "text": "Open a PR, then push a SECOND commit to the same branch after opening it, and confirm on GitHub that the PR updated automatically instead of needing a new one."
+    },
+    {
+      "title": "Reflect & note",
+      "text": "What did GitHub's diff view show you that a plain terminal git diff didn't (or vice versa)?",
+      "notes": true,
+      "placeholder": "e.g. GitHub's view let me leave an inline comment on one specific line, right in the diff -- that's the review workflow piece a terminal diff can't replicate on its own..."
+    },
+    {
+      "title": "Tick off before moving on",
+      "checklist": [
+        "I can explain what a PR actually is (a labeled diff, not new Git tech).",
+        "I pushed a branch and opened a real PR on GitHub myself.",
+        "I pushed a follow-up commit and watched the same PR update.",
+        "I read GitHub's diff view closely, as a reviewer would.",
+        "I wrote a reflection note above."
+      ]
+    }
+  ]
+}

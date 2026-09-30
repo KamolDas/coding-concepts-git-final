@@ -1,0 +1,69 @@
+{
+  "id": 3,
+  "module": "03",
+  "title": "Remote Repositories",
+  "titleEm": "— Working with GitHub",
+  "tagline": "GitHub doesn't do anything Git itself can't -- it's just a server hosting a copy of your repo.",
+  "concept": [
+    {
+      "label": "What",
+      "text": "A <code>remote</code> is a named reference to a copy of your repo elsewhere -- <code>origin</code> is the default name for \"where I cloned/pushed this from\"."
+    },
+    {
+      "label": "Why",
+      "text": "Local commits only exist on your machine until you push them -- a remote is how work becomes shared and backed up."
+    },
+    {
+      "label": "How",
+      "text": "<code>git clone</code> copies a remote repo locally; <code>git push</code> sends commits up; <code>git pull</code> brings new ones down."
+    },
+    {
+      "label": "When",
+      "text": "Starting a new shared project (create on GitHub, clone it) or joining an existing one (clone someone else's)."
+    },
+    {
+      "label": "Where",
+      "text": "Every collaborative workflow from here on assumes a remote exists."
+    }
+  ],
+  "mnemonic": {
+    "label": "C.P.P.",
+    "text": "Clone (copy down) -> Push (send up) -> Pull (bring down again) -- the remote round-trip"
+  },
+  "sandboxNote": {
+    "strong": "A note on this format:",
+    "text": "you'll need a free GitHub account and a new empty repo created there to run these for real -- GitHub's own \"Create repository\" page shows you the exact remote URL to use below."
+  },
+  "code": "git clone https://github.com/YOUR-USERNAME/YOUR-REPO.git\ncd YOUR-REPO\n\necho \"# My Project\" > README.md\ngit add README.md\ngit commit -m \"Add README\"\n\ngit push origin main            # PUSH: send this commit up to GitHub\n# refresh the repo page on github.com -- your commit is there\n\n# on a DIFFERENT machine (or after someone else pushes):\ngit pull origin main            # PULL: fetch + merge their new commits in",
+  "cycle": [
+    {
+      "title": "Read the concept table once",
+      "text": "The idea to hold onto: your local repo and GitHub's copy are just two independent Git repos that happen to know about each other by URL. Nothing GitHub does is Git-magic -- it's the same commands you already know, pointed at a server."
+    },
+    {
+      "title": "Type the code yourself — no copy-paste",
+      "text": "Create a real (even empty) repo on github.com, clone it, and push a real commit. Refresh the GitHub page and actually watch your commit appear.",
+      "hint": "If push is rejected, it almost always means the remote has commits you don't have locally yet -- that's Module 3's git pull, not a bug."
+    },
+    {
+      "title": "Apply it to your own data",
+      "text": "Make three commits locally without pushing after each one, THEN push all three at once, and look at GitHub's commit history page to confirm all three show up individually, in order."
+    },
+    {
+      "title": "Reflect & note",
+      "text": "What happened the first time push was rejected (if it was)? What did the error message actually say, and what fixed it?",
+      "notes": true,
+      "placeholder": "e.g. Got 'Updates were rejected because the remote contains work that you do not have locally' -- I'd forgotten I'd edited the README directly on github.com earlier, so a git pull first resolved it..."
+    },
+    {
+      "title": "Tick off before moving on",
+      "checklist": [
+        "I can explain what a remote actually is (a URL, not magic).",
+        "I cloned a real repo from GitHub myself.",
+        "I pushed a real commit and watched it appear on github.com.",
+        "I made multiple local commits and pushed them together.",
+        "I wrote a reflection note above."
+      ]
+    }
+  ]
+}

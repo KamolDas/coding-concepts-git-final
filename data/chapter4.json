@@ -1,0 +1,69 @@
+{
+  "id": 4,
+  "module": "04",
+  "title": "History & Diffs",
+  "titleEm": "— Understanding Change",
+  "tagline": "Every commit is a snapshot AND a diff -- Git stores the former, but almost always shows you the latter.",
+  "concept": [
+    {
+      "label": "What",
+      "text": "<code>git log</code> shows commit history; <code>git diff</code> shows exact line changes; <code>git show</code> shows one commit's full diff."
+    },
+    {
+      "label": "Why",
+      "text": "\"What changed, and why\" is the single most common question in any real codebase -- these three commands answer it."
+    },
+    {
+      "label": "How",
+      "text": "<code>diff</code> compares two states (working-vs-staged by default); pass commit hashes or branch names to compare anything to anything."
+    },
+    {
+      "label": "When",
+      "text": "Before committing (review your own changes), or investigating when/why a bug was introduced."
+    },
+    {
+      "label": "Where",
+      "text": "Code review (Module 7), and every debugging session that starts with \"this used to work.\""
+    }
+  ],
+  "mnemonic": {
+    "label": "L.D.S.",
+    "text": "Log (the list) -> Diff (the changes) -> Show (one commit's full story)"
+  },
+  "sandboxNote": {
+    "strong": "A note on this format:",
+    "text": "run these in a repo with real history -- your Module 1-3 repo already has enough commits to be useful."
+  },
+  "code": "git log                         # full history, newest first\ngit log --oneline               # LOG: compact, one line per commit -- use this daily\ngit log --oneline -5            # just the last 5 commits\n\necho \"extra line\" >> README.md\ngit diff                        # DIFF: unstaged changes, line by line (+/-)\ngit add README.md\ngit diff --staged               # DIFF: what's staged, about to be committed\n\ngit log --oneline               # find a commit hash from the list, then:\ngit show a1b2c3d                 # SHOW: that exact commit's full diff + message",
+  "cycle": [
+    {
+      "title": "Read the concept table once",
+      "text": "Notice the pairing: log tells you WHEN and by WHOM; diff/show tell you WHAT actually changed, line by line. You'll reach for both together constantly."
+    },
+    {
+      "title": "Type the code yourself — no copy-paste",
+      "text": "Make an edit, run git diff BEFORE staging, then git add and git diff --staged AFTER -- confirm the output moves from one command to the other as you'd expect.",
+      "hint": "Red lines (removed) and green lines (added) in diff output map directly to what git add is about to snapshot. Reading a diff before every commit is a habit worth building now."
+    },
+    {
+      "title": "Apply it to your own data",
+      "text": "Pick any commit from your own history with git log --oneline, copy its hash, and run git show on it -- read the real diff of something you actually wrote."
+    },
+    {
+      "title": "Reflect & note",
+      "text": "Did reading your own diff before committing catch anything you didn't mean to include?",
+      "notes": true,
+      "placeholder": "e.g. git diff showed a debug print statement I'd forgotten to remove -- caught it before committing instead of after..."
+    },
+    {
+      "title": "Tick off before moving on",
+      "checklist": [
+        "I can explain the difference between git diff and git diff --staged.",
+        "I ran git log --oneline and read real history I created.",
+        "I ran git show on a real commit hash from my own history.",
+        "I caught something in a diff before committing it.",
+        "I wrote a reflection note above."
+      ]
+    }
+  ]
+}

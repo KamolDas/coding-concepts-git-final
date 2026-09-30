@@ -1,0 +1,69 @@
+{
+  "id": 6,
+  "module": "06",
+  "title": "Rebasing & History",
+  "titleEm": "— Clean History",
+  "tagline": "Merge preserves exactly what happened; rebase rewrites the story to look like it happened in a cleaner order.",
+  "concept": [
+    {
+      "label": "What",
+      "text": "<code>git rebase</code> replays your branch's commits on top of another branch, one by one, instead of merging them in."
+    },
+    {
+      "label": "Why",
+      "text": "A tangle of merge commits from a long-running branch is hard to read; a rebased branch looks like it was written in a straight line."
+    },
+    {
+      "label": "How",
+      "text": "<code>git rebase main</code> replays your branch onto main's tip; <code>git rebase -i</code> lets you reorder, squash, or reword commits first."
+    },
+    {
+      "label": "When",
+      "text": "Cleaning up your OWN local/unpushed commits before opening a pull request -- never on commits others have already pulled."
+    },
+    {
+      "label": "Where",
+      "text": "Tidying a feature branch before Module 7's pull request, so reviewers see a clean, logical set of commits."
+    }
+  ],
+  "mnemonic": {
+    "label": "Never rebase shared history",
+    "text": "the one Git rule worth memorising word for word, not just the gist"
+  },
+  "sandboxNote": {
+    "strong": "A note on this format:",
+    "text": "rebase rewrites commit hashes -- practice on a local branch you haven't pushed, exactly as the Golden Rule below says."
+  },
+  "code": "git switch -c messy-feature\necho \"v1\" > feature.txt && git add . && git commit -m \"wip\"\necho \"v2\" > feature.txt && git add . && git commit -m \"wip more\"\necho \"v3\" > feature.txt && git add . && git commit -m \"actually finish it\"\n\ngit rebase -i HEAD~3             # interactive: squash the 3 messy commits into 1\n# an editor opens -- change \"pick\" to \"squash\" (or \"s\") on the last two lines,\n# save, then write ONE clean final commit message\n\ngit log --oneline                # now shows 1 clean commit instead of 3 messy ones\n\ngit switch main\ngit rebase messy-feature          # or: replay messy-feature's (now-clean) commit onto main",
+  "cycle": [
+    {
+      "title": "Read the concept table once",
+      "text": "The Golden Rule in the mnemonic isn't a suggestion -- rebasing a branch OTHERS have already pulled rewrites commits they still have the old versions of, and their next pull turns into a mess. Local-only branches are always safe to rebase."
+    },
+    {
+      "title": "Type the code yourself — no copy-paste",
+      "text": "Make 3 deliberately messy \"wip\" commits like the example, then squash them with interactive rebase. Read the editor screen carefully before saving -- it's genuinely instructing you, not just showing output.",
+      "hint": "If an interactive rebase goes wrong mid-way, git rebase --abort puts you back exactly where you started, no harm done. It's safe to experiment."
+    },
+    {
+      "title": "Apply it to your own data",
+      "text": "On a real feature branch of your own with several small commits, use interactive rebase to reword at least one commit message and reorder two commits -- not just squash."
+    },
+    {
+      "title": "Reflect & note",
+      "text": "What confused you about the interactive rebase editor the first time? What did pick/squash/reword actually do once you tried each?",
+      "notes": true,
+      "placeholder": "e.g. I expected squash to auto-write a combined message -- it actually opens a SECOND editor screen showing both old messages, letting me write the final one myself..."
+    },
+    {
+      "title": "Tick off before moving on",
+      "checklist": [
+        "I can state the Golden Rule of rebasing from memory.",
+        "I squashed 3 messy commits into 1 with interactive rebase.",
+        "I used rebase --abort at least once to back out safely.",
+        "I reordered and reworded commits on a real branch of mine.",
+        "I wrote a reflection note above."
+      ]
+    }
+  ]
+}

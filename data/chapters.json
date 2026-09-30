@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "module": "01",
+    "title": "Git Fundamentals",
+    "titleEm": "— The Foundation",
+    "tagline": "Three areas, one command pattern -- every other Git command is a variation on moving files between them.",
+    "navLabel": "Fundamentals"
+  },
+  {
+    "id": 2,
+    "module": "02",
+    "title": "Branching & Merging",
+    "titleEm": "— Parallel Timelines",
+    "tagline": "A branch is just a movable pointer to a commit -- that's the whole trick behind Git's speed.",
+    "navLabel": "Branching"
+  },
+  {
+    "id": 3,
+    "module": "03",
+    "title": "Remote Repositories",
+    "titleEm": "— Working with GitHub",
+    "tagline": "GitHub doesn't do anything Git itself can't -- it's just a server hosting a copy of your repo.",
+    "navLabel": "Remotes"
+  },
+  {
+    "id": 4,
+    "module": "04",
+    "title": "History & Diffs",
+    "titleEm": "— Understanding Change",
+    "tagline": "Every commit is a snapshot AND a diff -- Git stores the former, but almost always shows you the latter.",
+    "navLabel": "History"
+  },
+  {
+    "id": 5,
+    "module": "05",
+    "title": "Undoing Changes",
+    "titleEm": "— Time Travel",
+    "tagline": "Git almost never deletes anything -- \"undo\" usually means \"point somewhere else\", which is why it's recoverable.",
+    "navLabel": "Undo"
+  },
+  {
+    "id": 6,
+    "module": "06",
+    "title": "Rebasing & History",
+    "titleEm": "— Clean History",
+    "tagline": "Merge preserves exactly what happened; rebase rewrites the story to look like it happened in a cleaner order.",
+    "navLabel": "Rebase"
+  },
+  {
+    "id": 7,
+    "module": "07",
+    "title": "Pull Requests",
+    "titleEm": "— Collaboration Workflows",
+    "tagline": "A pull request isn't a Git feature at all -- it's GitHub's UI wrapped around a branch and a diff you already understand.",
+    "navLabel": "Pull Requests"
+  },
+  {
+    "id": 8,
+    "module": "08",
+    "title": "GitHub Actions",
+    "titleEm": "— CI/CD Basics",
+    "tagline": "A workflow file is just a YAML recipe for 'when X happens on GitHub, run these commands on a fresh machine.'",
+    "navLabel": "Actions"
+  },
+  {
+    "id": 9,
+    "module": "09",
+    "title": "Advanced Git",
+    "titleEm": "— Power Tools",
+    "tagline": "The tools you reach for once a week, not once a day -- but genuinely painful to not know when you need them.",
+    "navLabel": "Power Tools"
+  }
+]

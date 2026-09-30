@@ -1,0 +1,70 @@
+{
+  "id": 9,
+  "module": "09",
+  "title": "Advanced Git",
+  "titleEm": "— Power Tools",
+  "tagline": "The tools you reach for once a week, not once a day -- but genuinely painful to not know when you need them.",
+  "concept": [
+    {
+      "label": "What",
+      "text": "<code>git stash</code> (shelve uncommitted work), <code>git cherry-pick</code> (copy one commit elsewhere), <code>.gitignore</code>, tags, and hooks."
+    },
+    {
+      "label": "Why",
+      "text": "Real projects hit situations none of Modules 1-8 alone solve: switching branches mid-work, needing ONE commit from another branch, keeping secrets out of history."
+    },
+    {
+      "label": "How",
+      "text": "<code>git stash</code> / <code>stash pop</code>; <code>git cherry-pick &lt;hash&gt;</code>; a <code>.gitignore</code> file listing patterns to never track; <code>git tag v1.0</code> for release points."
+    },
+    {
+      "label": "When",
+      "text": "Stash: switching branches with unfinished work. Cherry-pick: a fix belongs on two branches. .gitignore: before your FIRST commit, ideally."
+    },
+    {
+      "label": "Where",
+      "text": "The toolbox every experienced Git user has reached for, even if rarely."
+    }
+  ],
+  "mnemonic": {
+    "label": "S.C.G.T.",
+    "text": "Stash (shelve) · Cherry-pick (copy one commit) · .Gitignore (exclude) · Tag (mark a release)"
+  },
+  "sandboxNote": {
+    "strong": "A note on this format:",
+    "text": "practice these on your existing Module 1-7 repo -- it already has enough branches and history to make all four genuinely useful."
+  },
+  "code": "echo \"node_modules/\" > .gitignore   # GITIGNORE: never track these, ever\necho \"*.log\" >> .gitignore\ngit add .gitignore && git commit -m \"Add gitignore\"\n\necho \"unfinished work\" >> README.md\ngit stash                        # STASH: shelve this mess without committing it\ngit switch main                  # clean switch -- the mess came off your working dir\ngit switch -                     # back to where you were\ngit stash pop                    # bring the shelved work back\n\ngit switch main\ngit log --oneline other-branch   # find a commit hash on another branch you need HERE\ngit cherry-pick a1b2c3d           # CHERRY-PICK: copy just that one commit onto main\n\ngit tag v1.0.0                    # TAG: mark this exact commit as a named release\ngit push origin v1.0.0             # tags need pushing separately from commits",
+  "cycle": [
+    {
+      "title": "Read the concept table once",
+      "text": "These four solve four DIFFERENT problems -- don't try to memorise them as one topic. Stash is about time (later), cherry-pick is about space (another branch), .gitignore is about exclusion, tags are about naming a point in history."
+    },
+    {
+      "title": "Type the code yourself — no copy-paste",
+      "text": "Do all four for real. For stash specifically: start genuinely unfinished work, get interrupted (switch branches for something else), and use stash exactly as you would in a real interruption.",
+      "hint": "git stash list shows everything you've shelved -- it's easy to forget a stash exists. Check it occasionally so old shelved work doesn't just vanish from memory."
+    },
+    {
+      "title": "Apply it to your own data",
+      "text": "Create a real .gitignore for a project type you actually use (Python, Node, etc. -- GitHub's own gitignore templates are a good reference), and cherry-pick one real commit between two of your own branches."
+    },
+    {
+      "title": "Reflect & note",
+      "text": "Which of the four solved a real annoyance you'd already hit before knowing the fix existed?",
+      "notes": true,
+      "placeholder": "e.g. I'd been manually copy-pasting a bugfix between two branches for weeks before learning cherry-pick existed -- one command replaced that entire manual process..."
+    },
+    {
+      "title": "Tick off before moving on",
+      "checklist": [
+        "I can describe what each of stash/cherry-pick/.gitignore/tag solves.",
+        "I used git stash and stash pop during a real interruption.",
+        "I cherry-picked a real commit from one branch onto another.",
+        "I wrote a real .gitignore and tagged a release with git tag.",
+        "I wrote a reflection note above."
+      ]
+    }
+  ],
+  "closingQuote": "\\u201cEvery Git GUI, every GitHub button, every IDE integration is a thin layer over the exact commands in these nine modules. Learn the commands once, and every tool built on top of them makes sense immediately.\\u201d"
+}

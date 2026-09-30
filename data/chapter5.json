@@ -1,0 +1,69 @@
+{
+  "id": 5,
+  "module": "05",
+  "title": "Undoing Changes",
+  "titleEm": "— Time Travel",
+  "tagline": "Git almost never deletes anything -- \"undo\" usually means \"point somewhere else\", which is why it's recoverable.",
+  "concept": [
+    {
+      "label": "What",
+      "text": "<code>git restore</code> undoes working-directory/staged changes; <code>git revert</code> undoes a commit by adding a new one; <code>git reset</code> moves a branch pointer."
+    },
+    {
+      "label": "Why",
+      "text": "Mistakes are certain -- a committed secret, a broken commit, an accidental file. Each needs a DIFFERENT undo tool."
+    },
+    {
+      "label": "How",
+      "text": "Revert is safe for shared history (adds a new commit); reset rewrites history (fine locally, risky if already pushed)."
+    },
+    {
+      "label": "When",
+      "text": "restore: before committing. revert: after committing and pushing. reset: after committing, NOT yet pushed."
+    },
+    {
+      "label": "Where",
+      "text": "Every real project eventually needs all three -- knowing which one matters more than knowing the syntax."
+    }
+  ],
+  "mnemonic": {
+    "label": "R.R.R.",
+    "text": "Restore (uncommitted) -> Revert (safe undo, shared) -> Reset (rewrite, local only)"
+  },
+  "sandboxNote": {
+    "strong": "A note on this format:",
+    "text": "practice these on a throwaway branch or repo first -- reset in particular can discard work if used carelessly, which is exactly why this module exists."
+  },
+  "code": "echo \"oops\" >> README.md\ngit restore README.md            # RESTORE: discard this uncommitted change entirely\n\ngit add README.md && git commit -m \"Bad commit\"\ngit revert HEAD                  # REVERT: adds a NEW commit that undoes the last one\ngit log --oneline                # notice: both commits are still in history, visible\n\ngit add README.md && git commit -m \"Another bad commit\"\ngit reset --soft HEAD~1          # RESET: undo the commit, keep changes staged\ngit reset --hard HEAD~1          # RESET: undo the commit AND discard the changes -- careful\n\ngit reflog                        # the safety net: EVERY position HEAD has ever been at,\n                                   # even ones reset --hard just \"deleted\"",
+  "cycle": [
+    {
+      "title": "Read the concept table once",
+      "text": "The decision that matters most: has this been pushed and shared? If yes, revert (adds history, safe for collaborators). If no, reset is fine (rewrites history, only affects you)."
+    },
+    {
+      "title": "Type the code yourself — no copy-paste",
+      "text": "Do all three on a throwaway branch. Then deliberately run reset --hard on a commit, panic slightly, and use git reflog to find and recover it -- that recovery IS the lesson.",
+      "hint": "git reflog is the closest thing Git has to an undo-for-your-undo. Nearly everything feels unrecoverable right up until you check it."
+    },
+    {
+      "title": "Apply it to your own data",
+      "text": "Intentionally commit something you don't want (a debug file, a typo commit message) to a real repo, then fix it with the correct tool for whether you've pushed it yet or not."
+    },
+    {
+      "title": "Reflect & note",
+      "text": "Did you use reflog for real? What did its output look like, and did it actually get you back to where you wanted?",
+      "notes": true,
+      "placeholder": "e.g. reflog showed a list like 'a1b2c3d HEAD@{0}: reset: moving to HEAD~1' -- I ran git reset --hard a1b2c3d using that hash and got my 'lost' commit back completely intact..."
+    },
+    {
+      "title": "Tick off before moving on",
+      "checklist": [
+        "I can explain when to use restore vs revert vs reset.",
+        "I used git restore to discard an uncommitted change.",
+        "I used git revert and confirmed the original commit stayed visible in history.",
+        "I deliberately lost a commit with reset --hard and recovered it with reflog.",
+        "I wrote a reflection note above."
+      ]
+    }
+  ]
+}

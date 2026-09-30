@@ -1,0 +1,69 @@
+{
+  "id": 8,
+  "module": "08",
+  "title": "GitHub Actions",
+  "titleEm": "— CI/CD Basics",
+  "tagline": "A workflow file is just a YAML recipe for 'when X happens on GitHub, run these commands on a fresh machine.'",
+  "concept": [
+    {
+      "label": "What",
+      "text": "GitHub Actions runs commands automatically in response to repo events (a push, a PR), defined in a YAML file."
+    },
+    {
+      "label": "Why",
+      "text": "Manually remembering to run tests before every merge doesn't scale -- automation runs them on EVERY push, no exceptions."
+    },
+    {
+      "label": "How",
+      "text": "A file at <code>.github/workflows/*.yml</code> defines: trigger (<code>on:</code>), a fresh virtual machine, and a list of steps to run on it."
+    },
+    {
+      "label": "When",
+      "text": "Once you have anything worth checking automatically: tests, linting, a build step."
+    },
+    {
+      "label": "Where",
+      "text": "The \"green checkmark\" you see on GitHub PRs everywhere is this running under the hood."
+    }
+  ],
+  "mnemonic": {
+    "label": "T.J.S.",
+    "text": "Trigger (on:) -> Job (a fresh VM) -> Steps (the commands) -- the shape of every workflow file"
+  },
+  "sandboxNote": {
+    "strong": "A note on this format:",
+    "text": "commit this file to a real GitHub repo and push -- the Actions tab on github.com is where you'll watch it actually run."
+  },
+  "code": "# .github/workflows/test.yml\nname: Run tests\n\non:                              # TRIGGER: when should this run?\n  push:\n    branches: [main]\n  pull_request:\n    branches: [main]\n\njobs:\n  test:                          # JOB: runs on a fresh virtual machine\n    runs-on: ubuntu-latest\n    steps:                       # STEPS: commands run in order, top to bottom\n      - uses: actions/checkout@v4        # get your repo's code onto the VM first\n      - name: Set up Python\n        uses: actions/setup-python@v5\n        with:\n          python-version: \"3.12\"\n      - name: Install dependencies\n        run: pip install -r requirements.txt\n      - name: Run tests\n        run: pytest                       # if this step fails, the whole run fails",
+  "cycle": [
+    {
+      "title": "Read the concept table once",
+      "text": "The shape to memorise, not the exact syntax: trigger, then a job that gets a completely fresh machine, then steps that run on it top to bottom. Every workflow file, however complex, is this same shape."
+    },
+    {
+      "title": "Type the code yourself — no copy-paste",
+      "text": "Adapt the example to a real (even tiny) project of yours, commit it to <code>.github/workflows/</code>, push, and watch it run on the Actions tab.",
+      "hint": "The VM starts completely empty every time -- if a command works on your machine but fails in Actions, it's almost always because something you have installed locally isn't installed on that fresh VM."
+    },
+    {
+      "title": "Apply it to your own data",
+      "text": "Make the workflow intentionally fail once (e.g. a broken test), push it, and watch the red X appear on GitHub -- then fix it and watch the same check turn green on the next push."
+    },
+    {
+      "title": "Reflect & note",
+      "text": "What was in the Actions log when it failed? Was the error message enough to know what to fix?",
+      "notes": true,
+      "placeholder": "e.g. The log showed 'ModuleNotFoundError' for a package I use locally but forgot to add to requirements.txt -- the fresh VM had nothing pre-installed, which is exactly the point..."
+    },
+    {
+      "title": "Tick off before moving on",
+      "checklist": [
+        "I can describe the trigger/job/steps shape from memory.",
+        "I committed a real workflow file and watched it run on GitHub.",
+        "I watched a check fail (red X) on a real push.",
+        "I fixed it and watched the same check pass (green) afterward.",
+        "I wrote a reflection note above."
+      ]
+    }
+  ]
+}
