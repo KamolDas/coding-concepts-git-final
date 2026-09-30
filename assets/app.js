@@ -169,7 +169,7 @@
           </div>
         </section>
         <footer class="site-footer">
-          ${data.closingQuote ? `<p class="quote">${data.closingQuote}</p><div class="attrib">— Closing Principle · Kamol Das · CSE, Oxford University</div>` : ''}
+          ${data.closingQuote ? `<p class="quote">${data.closingQuote}</p><div class="attrib">— Closing Principle · Kamol Das · Microbiology, University of Chittagong</div>` : ''}
           <div><button class="reset-btn" id="resetAll">Reset chapter progress</button></div>
         </footer>
       `;
