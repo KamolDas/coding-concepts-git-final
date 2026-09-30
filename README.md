@@ -54,4 +54,4 @@ Checklists and notes save to `localStorage` per chapter — nothing leaves the b
 
 ## Author
 
-Kamol Das · CSE, Oxford University
+Kamol Das · Microbiology, University of Chittagong
